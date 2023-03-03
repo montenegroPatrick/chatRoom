@@ -1,0 +1,16 @@
+.containerChat {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  text-align: left;
+  &_user {
+    text-decoration: underline;
+  }
+  &_content {
+    width: 100%;
+    border: 2px, solid, grey;
+    border-radius: 1rem;
+    background-color: grey;
+    color: white;
+  }
+}
