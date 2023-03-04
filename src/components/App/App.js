@@ -1,5 +1,6 @@
 // == Import
 
+import { StrictMode } from "react";
 import ContainerChat from "./ContainerChat/ContainerChat";
 import Form from "./Form/Form";
 import "./styles.scss";

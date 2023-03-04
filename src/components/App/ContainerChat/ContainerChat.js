@@ -3,13 +3,15 @@ import { useSelector } from "react-redux";
 import BubbleChat from "./BubbleChat";
 
 const ContainerChat = () => {
-  const chatsSended = useSelector((rootReducer) => rootReducer.chat);
+  const chat = useSelector((state) => state.chat);
 
   return (
-    <div className="containerChat">
-      {chatsSended.map((chat) => {
-        <BubbleChat key={chat.id} {...chat} />;
-      })}
+    <div className="container">
+      <div className="container">
+        <h2 className="container-user">kdeihfjpsd</h2>
+        <div className="container-content">balkalla</div>
+      </div>
+      {chat.map((chat) => chat && <p>{chat.content}</p>)}
     </div>
   );
 };

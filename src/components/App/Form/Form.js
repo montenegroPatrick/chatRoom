@@ -9,37 +9,33 @@ import {
 const Form = () => {
   const dispatch = useDispatch();
 
-  const inputChat = useSelector((rootReducer) => rootReducer.form.inputCHat);
-
+  const inputChat = useSelector((state) => state.form.inputChat);
+  const user = useSelector((state) => state.form.user);
+  console.log(inputChat);
   const handleSubmit = (event) => {
     event.preventDefault();
-    newHistoryChat({
-      id: newDate().toString(),
-      content: { inputChat },
-      user: { user },
-    });
-    resetChatOnSubmit();
+    dispatch(
+      newHistoryChat({
+        id: new Date().toString(),
+        content: inputChat,
+        user: user,
+      })
+    );
+    dispatch(resetChatOnSubmit());
+  };
+  const handleChange = (event) => {
+    dispatch(newChatOnChange(event.target.value));
   };
 
   return (
     <div>
-      <form
-        className="form"
-        action=""
-        onSubmit={() => {
-          dispatch(handleSubmit());
-        }}
-      >
+      <form className="form" action="" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Message"
           aria-label="Message"
           value={inputChat}
-          onChange={(event) => {
-            () => {
-              dispatch(newChatOnChange(event.target.value));
-            };
-          }}
+          onChange={handleChange}
         />
       </form>
     </div>

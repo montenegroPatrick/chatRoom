@@ -1,12 +1,15 @@
-.containerChat {
+.container {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   text-align: left;
-  &_user {
+  color: white;
+  background-color: black;
+  margin-bottom: 15rem;
+  &-user {
     text-decoration: underline;
+    color: white;
   }
-  &_content {
+  &-content {
     width: 100%;
     border: 2px, solid, grey;
     border-radius: 1rem;
