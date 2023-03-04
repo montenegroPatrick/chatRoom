@@ -1,12 +1,6 @@
 import { ON_SUBMIT } from "../actions/chatAction";
 
-const initialState = [
-  {
-    id: 1,
-    content: "",
-    user: "user",
-  },
-];
+const initialState = [];
 
 function chatReducer(state = initialState, action = {}) {
   switch (action.type) {

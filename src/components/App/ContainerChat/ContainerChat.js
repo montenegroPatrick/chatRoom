@@ -7,11 +7,15 @@ const ContainerChat = () => {
 
   return (
     <div className="container">
-      <div className="container">
-        <h2 className="container-user">kdeihfjpsd</h2>
-        <div className="container-content">balkalla</div>
-      </div>
-      {chat.map((chat) => chat && <p>{chat.content}</p>)}
+      {chat.map(
+        (chat) =>
+          chat && (
+            <div key={chat.id}>
+              <h2 className="container-user">{chat.user}</h2>
+              <div className="container-content">{chat.content}</div>
+            </div>
+          )
+      )}
     </div>
   );
 };

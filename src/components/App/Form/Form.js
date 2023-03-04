@@ -31,6 +31,7 @@ const Form = () => {
     <div>
       <form className="form" action="" onSubmit={handleSubmit}>
         <input
+          className="form-input"
           type="text"
           placeholder="Message"
           aria-label="Message"
