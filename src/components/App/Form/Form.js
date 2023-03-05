@@ -5,6 +5,7 @@ import {
   newChatOnChange,
   resetChatOnSubmit,
 } from "../../../actions/formAction";
+import { FormControl, TextField } from "@mui/material";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -30,11 +31,12 @@ const Form = () => {
   return (
     <div>
       <form className="form" action="" onSubmit={handleSubmit}>
-        <input
+        <TextField
+          id="standard-basic"
+          label={user}
+          variant="standard"
           className="form-input"
           type="text"
-          placeholder="Message"
-          aria-label="Message"
           value={inputChat}
           onChange={handleChange}
         />

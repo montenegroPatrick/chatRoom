@@ -10,10 +10,7 @@ const ContainerChat = () => {
       {chat.map(
         (chat) =>
           chat && (
-            <div key={chat.id}>
-              <h2 className="container-user">{chat.user}</h2>
-              <div className="container-content">{chat.content}</div>
-            </div>
+            <BubbleChat key={chat.id} content={chat.content} user={chat.user} />
           )
       )}
     </div>
