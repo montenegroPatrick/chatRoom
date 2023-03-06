@@ -5,8 +5,3 @@ export const newChatOnChange = (inputChat) => ({
   type: ON_CHANGE,
   inputChat,
 });
-
-export const resetChatOnSubmit = () => ({
-  type: ON_SUBMIT,
-  inputChat: "",
-});

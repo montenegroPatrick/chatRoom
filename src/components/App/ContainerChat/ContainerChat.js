@@ -4,7 +4,7 @@ import BubbleChat from "./BubbleChat";
 
 const ContainerChat = () => {
   const chat = useSelector((state) => state.chat);
-
+  console.log(chat);
   return (
     <div className="container">
       {chat.map(

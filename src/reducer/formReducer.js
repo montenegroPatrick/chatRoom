@@ -15,7 +15,7 @@ function formReducer(state = initialState, action = {}) {
     case ON_SUBMIT:
       return {
         ...state,
-        inputChat: action.inputChat,
+        inputChat: "",
       };
     default:
       return state;

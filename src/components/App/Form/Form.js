@@ -6,23 +6,22 @@ import {
   resetChatOnSubmit,
 } from "../../../actions/formAction";
 import { FormControl, TextField } from "@mui/material";
-
+import getNewId from "../../../utils/function";
 const Form = () => {
   const dispatch = useDispatch();
-
+  const stateChat = useSelector((state) => state.chat);
   const inputChat = useSelector((state) => state.form.inputChat);
   const user = useSelector((state) => state.form.user);
-  console.log(inputChat);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(
       newHistoryChat({
-        id: new Date().toString(),
+        id: getNewId(stateChat),
         content: inputChat,
         user: user,
       })
     );
-    dispatch(resetChatOnSubmit());
   };
   const handleChange = (event) => {
     dispatch(newChatOnChange(event.target.value));
