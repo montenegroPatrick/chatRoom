@@ -1,3 +1,5 @@
+/* eslint-disable quotes */
+/* eslint-disable import/no-extraneous-dependencies */
 import {
   Avatar,
   Divider,
@@ -8,19 +10,52 @@ import {
   IconButton,
   Button,
   TextField,
+  ListItem,
+  ListItemText,
+  Accordion,
+  AccordionDetails,
+  Typography,
+  AccordionSummary,
+
 } from "@mui/material";
-import { Box } from "@mui/system";
-import { useState } from "react";
+import { Box } from '@mui/system';
+import { useState, useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { newConnexion } from "../../../actions/formAction";
+import { checkPassword } from "../../../utils/function.js";
 
 function SettingsMenu() {
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [userConnexion, setUserConnexion] = useState("");
+  const [password, setPassword] = useState('');
   const open = Boolean(anchorEl);
+  const [errorList, setErrorList] = useState([]);
+  const initialMount = useRef(true);
+  const passwordField = useRef(null);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(newConnexion({
+      user: userConnexion,
+      password,
+    }));
+  };
+  useEffect(() => {
+    if (initialMount.current) {
+      initialMount.current = false;
+    }
+    if (!initialMount.current) {
+      const errorArray = checkPassword(password);
+      setErrorList([...errorArray]);
+    }
+  }, [password]);
   return (
     <div
       style={{ display: "flex", justifyContent: "right", marginRight: "2rem" }}
@@ -33,7 +68,7 @@ function SettingsMenu() {
           position: "fixed",
         }}
       >
-        <Tooltip title="Account settings">
+        <Tooltip title="Connexion">
           <IconButton
             onClick={handleClick}
             size="small"
@@ -87,21 +122,55 @@ function SettingsMenu() {
           }}
           noValidate
           autoComplete="off"
+          onSubmit={handleSubmit}
         >
+          {errorList.length > 0
+            && (
+              <Accordion>
+                <AccordionSummary
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography sx={{ marginLeft: "1rem" }}>Errors</Typography>
+                </AccordionSummary>
+                <ListItem
+                  alignItems="center"
+                  sx={{
+                    display: "flex", flexDirection: "column", padding: "0.2rem", margin: "0rem", color: "red",
+                  }}
+                >
+                  {errorList.map((error) => (
+                    <AccordionDetails>
+                      <Typography>{error}</Typography>
+                    </AccordionDetails>
+                  ))}
+                </ListItem>
+
+                <Divider />
+
+              </Accordion>
+
+            )}
           <MenuItem>
             <TextField
               id="outlined-textarea"
-              label="Multiline Placeholder"
+              label="email"
               placeholder="Placeholder"
               multiline
+              value={userConnexion}
+              onChange={(event) => setUserConnexion(event.target.value)}
             />
           </MenuItem>
           <MenuItem>
             <TextField
+              ref={passwordField}
               id="outlined-textarea"
-              label="Multiline Placeholder"
+              label="password"
               placeholder="Placeholder"
               multiline
+              value={password}
+              error={errorList.length > 0}
+              onChange={(event) => setPassword(event.target.value)}
             />
           </MenuItem>
           <MenuItem>
@@ -112,7 +181,7 @@ function SettingsMenu() {
           <Divider />
         </Box>
       </Menu>
-    </div>
+    </div >
   );
 }
 export default SettingsMenu;

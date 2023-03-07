@@ -1,10 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable quotes */
 import { Stack } from "@mui/system";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import "./chat.scss";
+import { PropTypes } from "prop-types";
 
-const BubbleChat = ({ user, content }) => {
-  console.log(content);
+function BubbleChat({ user, content }) {
+  // console.log(content);
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -19,6 +22,12 @@ const BubbleChat = ({ user, content }) => {
       <Item className="container-content">{content}</Item>
     </Stack>
   );
+}
+
+BubbleChat.propTypes = {
+  user: PropTypes.node.isRequired,
+  content: PropTypes.node.isRequired,
+
 };
 
 export default BubbleChat;

@@ -35,7 +35,9 @@
     "func-names": "off",
     "object-shorthand": "off",
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "disable import/order": "off",
+    "disable quotes": "off"
   },
   "settings": {
     "import/resolver": {

@@ -1,4 +1,6 @@
-const getNewId = (stateChat) => {
+/* eslint-disable quotes */
+/* eslint-disable no-useless-escape */
+export const getNewId = (stateChat) => {
   if (stateChat.length < 1) {
     return 1;
   }
@@ -7,4 +9,19 @@ const getNewId = (stateChat) => {
   return maxId + 1;
 };
 
-export default getNewId;
+export const checkPassword = (password) => {
+  const errorList = [];
+  if (password.length < 8) {
+    errorList.push('le mot de pass doit contenir au minimum 8 charactères');
+  }
+  if (!password.match(/[\d`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/)) {
+    errorList.push('le mot de pass doit contenir au minimum une lettre ou un  charactère special');
+  }
+  if (!password.match(/[a-z]/)) {
+    errorList.push('le mot de pass doit contenir au minimum une lettre en Minuscule');
+  }
+  if (!password.match(/[A-Z]/)) {
+    errorList.push('le mot de pass doit contenir au minimum une lettre en Majuscule');
+  }
+  return errorList;
+};

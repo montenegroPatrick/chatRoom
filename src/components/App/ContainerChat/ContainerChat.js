@@ -1,13 +1,15 @@
+/* eslint-disable import/order */
+/* eslint-disable quotes */
 import "./chat.scss";
 import { useSelector } from "react-redux";
 import BubbleChat from "./BubbleChat";
 import { useEffect, useRef } from "react";
 
-const ContainerChat = () => {
-  const chat = useSelector((state) => state.chat);
+function ContainerChat() {
+  const chatState = useSelector((state) => state.chat);
   const messagesEndRef = useRef(null);
 
-  const inputContent = chat.map((input) => input.content);
+  const inputContent = chatState.map((input) => input.content);
 
   useEffect(() => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -15,15 +17,13 @@ const ContainerChat = () => {
 
   return (
     <div className="container">
-      {chat.map(
-        (chat) =>
-          chat && (
-            <BubbleChat key={chat.id} content={chat.content} user={chat.user} />
-          )
-      )}
+      {chatState.map(
+        (chat) => chat 
+        && (<BubbleChat key={chat.id} content={chat.content} user={chat.user} />)
+        )}
       <div ref={messagesEndRef} />
     </div>
   );
-};
+}
 
 export default ContainerChat;

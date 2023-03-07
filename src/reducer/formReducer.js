@@ -1,11 +1,13 @@
-import { ON_CHANGE, ON_SUBMIT } from "../actions/formAction";
+import { CONNEXION, ON_CHANGE, ON_SUBMIT } from '../actions/formAction';
 
 const initialState = {
-  inputChat: "",
-  user: "super chat",
+  inputChat: '',
+  user: '',
+  password: '',
 };
 
 function formReducer(state = initialState, action = {}) {
+  const { payload } = action;
   switch (action.type) {
     case ON_CHANGE:
       return {
@@ -15,7 +17,13 @@ function formReducer(state = initialState, action = {}) {
     case ON_SUBMIT:
       return {
         ...state,
-        inputChat: "",
+        inputChat: '',
+      };
+    case CONNEXION:
+      return {
+        ...state,
+        user: payload.user,
+        password: payload.password,
       };
     default:
       return state;
