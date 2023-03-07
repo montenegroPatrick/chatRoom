@@ -16,7 +16,7 @@ function ContainerChat() {
   }, [inputContent]);
 
   return (
-    <div className="container">
+    <div className="container box-shadow">
       {chatState.map(
         (chat) => chat
           && (<BubbleChat key={chat.id} content={chat.content} user={chat.user} />)

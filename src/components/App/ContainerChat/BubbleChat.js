@@ -13,12 +13,11 @@ function BubbleChat({ user, content }) {
   const date = new Date();
   return (
     <>
-      <Box sx={{ display: "flex", padding: "1rem" }}>
-        <p className="container-user">{user}</p>
+      <Box className=""sx={{ display: "flex", padding: "1rem" }}>
+        <p className="container-user">{user ? user : "no-user"}</p>
         <p className="date">{`${date.getHours()}: ${date.getMinutes()}: ${date.getSeconds()}`}</p>
       </Box>
       <p className="content">{content}</p>
-      <Divider />
     </>
   );
 }

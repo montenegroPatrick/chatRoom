@@ -156,22 +156,19 @@ function SettingsMenu() {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography sx={{ marginLeft: "1rem", animation: glitch ? "myAnim 2s ease 0s 1 normal forwards" : "" }}>Errors</Typography>
+                  <Typography sx={{ marginLeft: "0.5rem", textDecoration: "underline", animation: glitch ? "myAnim 2s ease 0s 1 normal forwards" : "" }}>Errors</Typography>
                 </AccordionSummary>
-                <ListItem
-                  alignItems="center"
+                <Box
                   sx={{
-                    display: "flex", flexDirection: "column", padding: "0.2rem", margin: "0rem", color: "red",
+                    display: "flex", flexDirection: "column", color: "red", marginLeft: "0.5rem",
                   }}
                 >
                   {errorList.map((error) => (
                     <AccordionDetails>
-                      <Typography>{error}</Typography>
+                      <li style={{ fontSize: "0.9rem", textAlign: "justify" }}>{error}</li>
                     </AccordionDetails>
                   ))}
-                </ListItem>
-
-                <Divider />
+                </Box>
 
               </Accordion>
 
@@ -182,7 +179,6 @@ function SettingsMenu() {
               label="email"
               placeholder="Placeholder"
               type="email"
-              multiline
               value={userConnexion}
               error={!!emailValidator}
               onChange={(event) => setUserConnexion(event.target.value)}
@@ -193,7 +189,7 @@ function SettingsMenu() {
               ref={passwordField}
               id="outlined-password-input"
               type="password"
-              label="password"
+              label="Password"
               placeholder="Placeholder"
               value={password}
               error={errorList.length > 0}

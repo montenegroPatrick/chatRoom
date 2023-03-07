@@ -9,22 +9,35 @@
   border-radius: 1rem;
   margin-bottom: 1rem;
   &-user {
-    padding: 1rem;
+    font-size: small;
     margin-right: 1rem;
-    text-decoration: underline;
+    text-decoration: italic;
+    font-weight: bold;
     color: black;
   }
   
 }
 .content {
-  
-  margin-left: 2rem;
-  padding: 0.5rem;
+  margin-left: 1rem;
+  padding: 0.3rem;
   border-radius: 0.5rem;
   width: fit-content;
-  background-color:rgb(245, 245, 245);
   color: rgb(49, 37, 37);
 }
 .date {
   font-size: small;
+}
+.box-shadow {
+  box-shadow:
+  -3.9px 0px 12.2px rgba(0, 0, 0, 0.002),
+  -5.1px 0px 20.5px rgba(0, 0, 0, 0.004),
+  -5.2px 0px 26.5px rgba(0, 0, 0, 0.007),
+  -4.5px 0px 31px rgba(0, 0, 0, 0.011),
+  -2.9px 0px 34.7px rgba(0, 0, 0, 0.016),
+  -0.5px 0px 38.1px rgba(0, 0, 0, 0.021),
+  3px 0px 41.9px rgba(0, 0, 0, 0.028),
+  7.9px 0px 47.2px rgba(0, 0, 0, 0.035),
+  14.9px 0px 56.2px rgba(0, 0, 0, 0.042),
+  26px 0px 80px rgba(0, 0, 0, 0.05)
+;
 }
