@@ -6,14 +6,17 @@ import SettingsMenu from "./Settings/Settings";
 import ContainerChat from "./ContainerChat/ContainerChat";
 import Form from "./Form/Form";
 import "./styles.scss";
+import { Container } from "@mui/material";
 
 // == Composant
 function App() {
   return (
     <div className="app">
-      <SettingsMenu />
-      <ContainerChat />
-      <Form />
+      <Container maxWidth="md">
+        <SettingsMenu />
+        <ContainerChat />
+        <Form />
+      </Container>
     </div>
   );
 }

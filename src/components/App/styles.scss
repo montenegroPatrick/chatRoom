@@ -1,7 +1,8 @@
 .app {
-  margin: 1em auto;
+  width: 100%;
+  align-items: center;
   display: flex;
   flex-direction: column;
+  background-color: rgb(245, 245, 245);
 
-  text-align: left;
 }

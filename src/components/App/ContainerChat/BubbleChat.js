@@ -5,22 +5,21 @@ import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import "./chat.scss";
 import { PropTypes } from "prop-types";
+import { Box, Divider, p } from "@mui/material";
 
 function BubbleChat({ user, content }) {
   // console.log(content);
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    width: "fit-content",
-    textAlign: "left",
-    color: theme.palette.text.secondary,
-  }));
+
+  const date = new Date();
   return (
-    <Stack spacing={2}>
-      <Item className="container-user">{user}</Item>
-      <Item className="container-content">{content}</Item>
-    </Stack>
+    <>
+      <Box sx={{ display: "flex", padding: "1rem" }}>
+        <p className="container-user">{user}</p>
+        <p className="date">{`${date.getHours()}: ${date.getMinutes()}: ${date.getSeconds()}`}</p>
+      </Box>
+      <p className="content">{content}</p>
+      <Divider />
+    </>
   );
 }
 

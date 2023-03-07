@@ -18,21 +18,26 @@ import {
   AccordionSummary,
 
 } from "@mui/material";
+import './Settings.scss';
 import { Box } from '@mui/system';
 import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { newConnexion } from "../../../actions/formAction";
-import { checkPassword } from "../../../utils/function.js";
+import { checkEmail, checkPassword } from "../../../utils/function.js";
 
 function SettingsMenu() {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const [userConnexion, setUserConnexion] = useState("");
+  const [emailValidator, setEmailValidator] = useState("");
   const [password, setPassword] = useState('');
   const open = Boolean(anchorEl);
   const [errorList, setErrorList] = useState([]);
+  const [glitch, setGlitch] = useState(false);
   const initialMount = useRef(true);
   const passwordField = useRef(null);
+  console.log(glitch);
+  console.log(!!emailValidator);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -41,21 +46,40 @@ function SettingsMenu() {
     setAnchorEl(null);
   };
   const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(newConnexion({
-      user: userConnexion,
-      password,
-    }));
+    if (errorList.length > 0 || !!emailValidator) {
+      setTimeout(() => {
+        setGlitch(true);
+      }, 10);
+      setGlitch(false);
+    }
+    else {
+      event.preventDefault();
+      dispatch(newConnexion({
+        user: userConnexion,
+        password: password,
+      }));
+      setUserConnexion('');
+      setPassword('');
+    }
   };
   useEffect(() => {
     if (initialMount.current) {
       initialMount.current = false;
     }
-    if (!initialMount.current) {
+  }, []);
+
+  useEffect(() => {
+    if (password === "" && userConnexion === "") {
+      setEmailValidator(false);
+      setErrorList([]);
+    }
+    else {
+      const errorEmail = checkEmail(userConnexion);
+      setEmailValidator(errorEmail);
       const errorArray = checkPassword(password);
       setErrorList([...errorArray]);
     }
-  }, [password]);
+  }, [password, userConnexion]);
   return (
     <div
       style={{ display: "flex", justifyContent: "right", marginRight: "2rem" }}
@@ -115,6 +139,7 @@ function SettingsMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
+
         <Box
           component="form"
           sx={{
@@ -131,7 +156,7 @@ function SettingsMenu() {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography sx={{ marginLeft: "1rem" }}>Errors</Typography>
+                  <Typography sx={{ marginLeft: "1rem", animation: glitch ? "myAnim 2s ease 0s 1 normal forwards" : "" }}>Errors</Typography>
                 </AccordionSummary>
                 <ListItem
                   alignItems="center"
@@ -156,32 +181,34 @@ function SettingsMenu() {
               id="outlined-textarea"
               label="email"
               placeholder="Placeholder"
+              type="email"
               multiline
               value={userConnexion}
+              error={!!emailValidator}
               onChange={(event) => setUserConnexion(event.target.value)}
             />
           </MenuItem>
           <MenuItem>
             <TextField
               ref={passwordField}
-              id="outlined-textarea"
+              id="outlined-password-input"
+              type="password"
               label="password"
               placeholder="Placeholder"
-              multiline
               value={password}
               error={errorList.length > 0}
               onChange={(event) => setPassword(event.target.value)}
             />
           </MenuItem>
           <MenuItem>
-            <Button variant="contained" disableElevation>
+            <Button variant="contained" disableElevation onClick={handleSubmit}>
               Envoyer
             </Button>
           </MenuItem>
           <Divider />
         </Box>
       </Menu>
-    </div >
+    </div>
   );
 }
 export default SettingsMenu;

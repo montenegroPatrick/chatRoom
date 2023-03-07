@@ -25,3 +25,8 @@ export const checkPassword = (password) => {
   }
   return errorList;
 };
+
+export const checkEmail = (email) => {
+  const error = email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/) ? false : "l'email doit être exacte";
+  return error;
+};

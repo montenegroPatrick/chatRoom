@@ -18,9 +18,9 @@ function ContainerChat() {
   return (
     <div className="container">
       {chatState.map(
-        (chat) => chat 
-        && (<BubbleChat key={chat.id} content={chat.content} user={chat.user} />)
-        )}
+        (chat) => chat
+          && (<BubbleChat key={chat.id} content={chat.content} user={chat.user} />)
+      )}
       <div ref={messagesEndRef} />
     </div>
   );
