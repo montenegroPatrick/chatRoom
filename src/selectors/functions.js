@@ -1,5 +1,5 @@
 function getAllMessages({ chat }) {
-  return chat;
+  return chat.messages;
 }
 
 function getErrors({ form }) {
@@ -14,4 +14,5 @@ function getUser({ form }) {
 function getLoading({ form }) {
   return form.loading;
 }
+
 export { getAllMessages, getErrors, getLogin, getUser, getLoading };

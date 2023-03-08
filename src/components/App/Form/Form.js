@@ -9,36 +9,48 @@ import { getNewId } from '../../../utils/function';
 import { newHistoryChat } from '../../../actions/chatAction';
 import { newChatOnChange } from '../../../actions/formAction';
 import ToolsBar from '../../mui/ToolsBar';
-import { getAllMessages } from '../../../selectors/functions';
+import { getAllMessages, getLogin, getUser } from '../../../selectors/functions';
+import AlertDialogSlide from '../../mui/Modal';
 
 function Form() {
   const inputEl = useRef(null);
   const dispatch = useDispatch();
   const messages = useSelector(getAllMessages);
   const [inputChat, setInputChat] = useState('');
-  const user = useSelector(({ form }) => form.user);
+  const user = useSelector(getUser);
   const [alignment, setAlignment] = useState('left');
   const [formats, setFormats] = useState(() => ['italic']);
   const textDecoration = formats.map((format) => (format ? ` "${format}"` : undefined));
   const textDecorationString = textDecoration.toString();
+  const login = useSelector(getLogin);
   useEffect(() => {
     inputEl.current.focus();
   }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(
-      newHistoryChat({
-        id: getNewId(messages),
-        content: inputChat,
-        user: user,
-      }),
-    );
+    if (user !== '') {
+      dispatch(
+        newHistoryChat({
+          id: getNewId(messages),
+          content: inputChat,
+          user: user,
+        }),
+      );
+    }
     setInputChat('');
   };
 
   return (
     <form className="form" action="" onSubmit={handleSubmit}>
+      {user === '' && (
+        <AlertDialogSlide
+          inputChat={inputChat}
+          login={login}
+          content="BOU, vous devez vous connecter"
+          title="vous êtes déconnecté"
+        />
+      )}
       <ToolsBar
         sx={{ margin: '1rem' }}
         alignment={alignment}

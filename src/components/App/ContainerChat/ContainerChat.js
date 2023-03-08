@@ -1,25 +1,25 @@
 /* eslint-disable import/order */
 /* eslint-disable quotes */
-import "./chat.scss";
-import { useSelector } from "react-redux";
-import BubbleChat from "./BubbleChat";
-import { useEffect, useRef } from "react";
+import './chat.scss';
+import { useSelector } from 'react-redux';
+import BubbleChat from './BubbleChat';
+import { useEffect, useRef } from 'react';
+import { getAllMessages } from '../../../selectors/functions';
 
 function ContainerChat() {
-  const chatState = useSelector((state) => state.chat);
+  const messages = useSelector(getAllMessages);
   const messagesEndRef = useRef(null);
-
-  const inputContent = chatState.map((input) => input.content);
+  console.log(messages);
+  const inputContent = messages.map((input) => input.content);
 
   useEffect(() => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [inputContent]);
 
   return (
     <div className="container box-shadow">
-      {chatState.map(
-        (chat) => chat
-          && (<BubbleChat key={chat.id} content={chat.content} user={chat.user} />)
+      {messages.map(
+        (chat) => chat && <BubbleChat key={chat.id} content={chat.content} user={chat.user} />,
       )}
       <div ref={messagesEndRef} />
     </div>
