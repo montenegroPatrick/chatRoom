@@ -116,6 +116,7 @@ function SettingsMenu() {
             overflow: "visible",
             filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
             mt: 1.5,
+            marginRight: 1.5,
             "& .MuiAvatar-root": {
               width: 32,
               height: 32,
@@ -127,7 +128,7 @@ function SettingsMenu() {
               display: "block",
               position: "absolute",
               top: 0,
-              right: 14,
+              right: 18,
               width: 10,
               height: 10,
               bgcolor: "background.paper",
@@ -143,7 +144,7 @@ function SettingsMenu() {
         <Box
           component="form"
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
+            "& .MuiTextField-root": { m: 1, width: "50ch" },
           }}
           noValidate
           autoComplete="off"
@@ -160,7 +161,7 @@ function SettingsMenu() {
                 </AccordionSummary>
                 <Box
                   sx={{
-                    display: "flex", flexDirection: "column", color: "red", marginLeft: "0.5rem",
+                    display: "flex", flexDirection: "column", color: "red", marginLeft: "0.5rem", maxWidth: "50ch", lineHeight: "1.3rem",
                   }}
                 >
                   {errorList.map((error) => (
