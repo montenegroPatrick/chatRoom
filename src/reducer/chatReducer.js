@@ -1,4 +1,4 @@
-import { ON_SUBMIT } from "../actions/chatAction";
+import { ON_SUBMIT } from '../actions/chatAction';
 
 const initialState = [];
 
@@ -10,5 +10,4 @@ function chatReducer(state = initialState, action = {}) {
       return state;
   }
 }
-
 export default chatReducer;

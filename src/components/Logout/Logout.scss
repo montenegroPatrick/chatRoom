@@ -1,0 +1,13 @@
+.logout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  &-text-button {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+  }
+  &-text {
+    margin: 1rem;
+  }
+}

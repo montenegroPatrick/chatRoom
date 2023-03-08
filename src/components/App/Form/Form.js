@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-unused-vars */
 import './form.scss';
@@ -6,22 +7,19 @@ import { Box, FormControl, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNewId } from '../../../utils/function';
 import { newHistoryChat } from '../../../actions/chatAction';
-import {
-  newChatOnChange,
-} from '../../../actions/formAction';
+import { newChatOnChange } from '../../../actions/formAction';
 import ToolsBar from '../../mui/ToolsBar';
+import { getAllMessages } from '../../../selectors/functions';
 
 function Form() {
   const inputEl = useRef(null);
   const dispatch = useDispatch();
-  const messages = useSelector((state) => state.chat);
+  const messages = useSelector(getAllMessages);
   const [inputChat, setInputChat] = useState('');
-  const user = useSelector((state) => state.form.user);
+  const user = useSelector(({ form }) => form.user);
   const [alignment, setAlignment] = useState('left');
   const [formats, setFormats] = useState(() => ['italic']);
-  console.log(alignment);
-  console.log(formats);
-  const textDecoration = (formats).map((format) => (format ? ` "${format}"` : undefined));
+  const textDecoration = formats.map((format) => (format ? ` "${format}"` : undefined));
   const textDecorationString = textDecoration.toString();
   useEffect(() => {
     inputEl.current.focus();
@@ -40,36 +38,28 @@ function Form() {
   };
 
   return (
-    
-
-      <form
-        className="form"
-        action=""
-        onSubmit={handleSubmit}
-      >
-        <ToolsBar
-          sx={{margin: "1rem"}}
-          alignment={alignment}
-          formats={formats}
-          setFormats={setFormats}
-          setAlignment={setAlignment}
-        />
-        <input
-          style={{ textAlignLast: `${alignment}` }}
-          ref={inputEl}
-          id="standard-basic"
-          label={user}
-          className="form-input"
-          size="medium"
-          type="text"
-          value={inputChat}
-          onChange={(event) => {
-            setInputChat(event.target.value);
-          }}
-        />
-      </form>
-
-
+    <form className="form" action="" onSubmit={handleSubmit}>
+      <ToolsBar
+        sx={{ margin: '1rem' }}
+        alignment={alignment}
+        formats={formats}
+        setFormats={setFormats}
+        setAlignment={setAlignment}
+      />
+      <input
+        style={{ textAlignLast: `${alignment}` }}
+        ref={inputEl}
+        id="standard-basic"
+        label={user}
+        className="form-input"
+        size="medium"
+        type="text"
+        value={inputChat}
+        onChange={(event) => {
+          setInputChat(event.target.value);
+        }}
+      />
+    </form>
   );
 }
 
