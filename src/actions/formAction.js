@@ -5,6 +5,7 @@ export const CONNEXION = 'CONNEXION';
 export const AUTHENTIFICATION = 'AUTHENTIFICATION';
 export const CATCH_401 = 'CATCH_401';
 export const CHANGE_LOADING = 'CHANGE_LOADING';
+
 export const newChatOnChange = (inputChat) => ({
   type: ON_CHANGE,
   inputChat,

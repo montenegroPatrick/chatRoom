@@ -98,7 +98,6 @@ export default function ToolsBar({ alignment, formats, setAlignment, setFormats 
 ToolsBar.propTypes = {
   alignment: PropTypes.node.isRequired,
   setAlignment: PropTypes.func.isRequired,
-  setFormats: PropTypes.node.isRequired,
-  formats: PropTypes.func.isRequired,
-
+  setFormats: PropTypes.func.isRequired,
+  formats: PropTypes.node.isRequired,
 };

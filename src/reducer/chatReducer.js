@@ -1,4 +1,4 @@
-import { ON_SUBMIT } from '../actions/chatAction';
+import { MESSAGE_SEND } from '../actions/chatAction';
 
 const initialState = {
   messages: [],
@@ -8,7 +8,7 @@ const initialState = {
 function chatReducer(state = initialState, action = {}) {
   const { messages } = state;
   switch (action.type) {
-    case ON_SUBMIT:
+    case MESSAGE_SEND:
       return {
         ...state,
         messages: [...messages, action.payload],

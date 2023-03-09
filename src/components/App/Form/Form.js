@@ -20,9 +20,10 @@ function Form() {
   const user = useSelector(getUser);
   const [alignment, setAlignment] = useState('left');
   const [formats, setFormats] = useState(() => ['italic']);
-  const textDecoration = formats.map((format) => (format ? ` "${format}"` : undefined));
-  const textDecorationString = textDecoration.toString();
+  const fontStyle = formats.map((format) => ` "${format}"`);
+  const fontStyleString = fontStyle.toString();
   const login = useSelector(getLogin);
+  console.log(fontStyleString);
   useEffect(() => {
     inputEl.current.focus();
   }, []);
@@ -59,7 +60,7 @@ function Form() {
         setAlignment={setAlignment}
       />
       <input
-        style={{ textAlignLast: `${alignment}` }}
+        style={{ textAlignLast: `${alignment}`, fontStyle: `${fontStyleString}` }}
         ref={inputEl}
         id="standard-basic"
         label={user}
