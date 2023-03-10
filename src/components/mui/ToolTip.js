@@ -9,7 +9,6 @@ import { Menu } from '@mui/material';
 export default function StandaloneToggleButton({ children }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selected, setSelected] = useState(false);
-  const [open, setOpen] = useState(false);
   const openAnchor = Boolean(anchorEl);
   return (
     <>
@@ -18,7 +17,6 @@ export default function StandaloneToggleButton({ children }) {
           value="check"
           selected={selected}
           onClick={(event) => {
-            setOpen(!open);
             setAnchorEl(event.currentTarget);
           }}
           onChange={() => {
@@ -35,6 +33,7 @@ export default function StandaloneToggleButton({ children }) {
         onClose={() => {
           setAnchorEl(null);
         }}
+        transitionDuration={1}
         PaperProps={{
           elevation: 10,
           sx: {

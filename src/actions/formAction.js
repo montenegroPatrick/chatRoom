@@ -4,7 +4,10 @@ export const newConnexion = (payload) => ({
   type: CONNEXION,
   payload,
 });
-
+export const LOGOUT = 'LOGOUT';
+export const logout = () => ({
+  type: LOGOUT,
+});
 // action middleware
 export const AUTHENTIFICATION = 'AUTHENTIFICATION';
 export const CATCH_401 = 'CATCH_401';

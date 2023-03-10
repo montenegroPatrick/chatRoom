@@ -14,12 +14,13 @@ import {
   AccordionDetails,
   Typography,
   AccordionSummary,
+  FormControl,
 } from '@mui/material';
 import './Settings.scss';
 import { Box } from '@mui/system';
 import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { newAuthentification, newConnexion } from '../../../actions/formAction';
+import { logout, newAuthentification, newConnexion } from '../../../actions/formAction';
 import { checkEmail, checkPassword } from '../../../utils/function.js';
 import { getErrors, getLoading, getLogin, getUser } from '../../../selectors/functions';
 import Logout from '../../Logout/Logout';
@@ -86,12 +87,8 @@ function SettingsMenu() {
     }
   }, [password, userConnexion]);
   const handleLogout = () => {
-    dispatch(
-      newConnexion({
-        pseudo: '',
-        login: false,
-      }),
-    );
+    dispatch(logout());
+    setAnchorEl(null);
   };
   return (
     <>
@@ -166,7 +163,6 @@ function SettingsMenu() {
                 }}
                 noValidate
                 autoComplete="off"
-                onSubmit={handleSubmit}
               >
                 {errors !== '' ? (
                   <Typography
@@ -211,6 +207,7 @@ function SettingsMenu() {
                     </Accordion>
                   )
                 )}
+
                 <MenuItem>
                   <TextField
                     name="email"
@@ -242,7 +239,6 @@ function SettingsMenu() {
                     Envoyer
                   </Button>
                 </MenuItem>
-
                 <Divider />
               </Box>
             </Menu>

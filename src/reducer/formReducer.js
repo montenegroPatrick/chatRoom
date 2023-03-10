@@ -1,4 +1,4 @@
-import { CATCH_401, CHANGE_LOADING, CONNEXION, ON_CHANGE, ON_SUBMIT } from '../actions/formAction';
+import { CATCH_401, CHANGE_LOADING, CONNEXION, LOGOUT } from '../actions/formAction';
 
 const initialState = {
   inputChat: '',
@@ -29,6 +29,12 @@ function formReducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: payload.loading,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        login: false,
+        user: '',
       };
 
     default:

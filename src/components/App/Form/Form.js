@@ -21,8 +21,11 @@ function Form() {
   const user = useSelector(getUser);
   const [alignment, setAlignment] = useState('left');
   const [formats, setFormats] = useState(() => ['italic']);
-  const fontStyle = formats.map((format) => ` "${format}"`);
-  const fontStyleString = fontStyle.toString();
+  const formatStyle = formats.map((element) => {
+    return element;
+  });
+  const styleFormat = formatStyle.toString();
+  console.log(formatStyle.toString());
   const login = useSelector(getLogin);
 
   useEffect(() => {
@@ -68,7 +71,7 @@ function Form() {
         </StandaloneToggleButton>
       </Box>
       <input
-        style={{ textAlignLast: `${alignment}`, fontStyle: `${fontStyleString}` }}
+        style={{ textAlignLast: `${alignment}` }}
         ref={inputEl}
         id="standard-basic"
         label={user}
