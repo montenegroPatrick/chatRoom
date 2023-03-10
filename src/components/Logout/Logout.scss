@@ -1,8 +1,7 @@
 .logout {
   display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
+  float: right;
+  height: 100vh;
   &-text-button {
     display: flex;
     flex-direction: row;
