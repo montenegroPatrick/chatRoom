@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { io } from 'socket.io-client';
 
-import { WEBSOCKET_CONNECT, MESSAGE_SEND } from '../actions/chatAction';
+import { WEBSOCKET_CONNECT, MESSAGE_SEND, addMessage } from '../actions/chatAction';
 
 let socket;
 const websocket = (store) => (next) => (action) => {
@@ -12,18 +12,17 @@ const websocket = (store) => (next) => (action) => {
 
       //
       socket.on('server_send_message', (message) => {
-        console.log("Réception d'un message envoyé par le serveur");
-        console.log(message);
+        console.log('>>connectIo');
+        store.dispatch(addMessage(message));
       });
 
       break;
     }
 
     case MESSAGE_SEND:
-      console.log(action);
       socket.emit('client_send_message', {
-        author: 'fabien',
-        content: 'blibli',
+        author: action.payload.user,
+        content: action.payload.content,
       });
       next(action);
       break;

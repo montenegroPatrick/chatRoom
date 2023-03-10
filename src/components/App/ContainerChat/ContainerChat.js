@@ -9,7 +9,6 @@ import { getAllMessages } from '../../../selectors/functions';
 function ContainerChat() {
   const messages = useSelector(getAllMessages);
   const messagesEndRef = useRef(null);
-  console.log(messages);
   const inputContent = messages.map((input) => input.content);
 
   useEffect(() => {
@@ -19,7 +18,7 @@ function ContainerChat() {
   return (
     <div className="container box-shadow">
       {messages.map(
-        (chat) => chat && <BubbleChat key={chat.id} content={chat.content} user={chat.user} />,
+        (chat) => chat && <BubbleChat key={chat.id} content={chat.content} author={chat.author} />,
       )}
       <div ref={messagesEndRef} />
     </div>

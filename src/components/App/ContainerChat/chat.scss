@@ -14,8 +14,30 @@
     text-decoration: italic;
     font-weight: bold;
     color: black;
+
+    &--me {
+      background: rgb(113, 113, 113);
+      background: linear-gradient(
+        90deg,
+        rgba(113, 113, 113, 1) 0%,
+        rgba(167, 167, 170, 1) 0%,
+        rgba(255, 255, 255, 0.926) 100%
+      );
+      padding-left: 0.5rem;
+      border-radius: 0.2rem;
+    }
+    &--other {
+      background: rgb(167, 167, 170);
+      background: linear-gradient(
+        90deg,
+        rgb(255, 255, 255) 0%,
+        rgba(255, 255, 255, 0.804) 0%,
+        rgb(143, 143, 143) 100%
+      );
+      padding-right: 0.5rem;
+      border-radius: 0.2rem;
+    }
   }
-  
 }
 .content {
   margin: 0.5rem;
@@ -25,18 +47,23 @@
 }
 .date {
   font-size: small;
+  margin-right: 1rem;
+  margin-left: 0.5rem;
+  padding: 0.2rem;
 }
 .box-shadow {
-  box-shadow:
-  -3.9px 0px 12.2px rgba(0, 0, 0, 0.002),
-  -5.1px 0px 20.5px rgba(0, 0, 0, 0.004),
-  -5.2px 0px 26.5px rgba(0, 0, 0, 0.007),
-  -4.5px 0px 31px rgba(0, 0, 0, 0.011),
-  -2.9px 0px 34.7px rgba(0, 0, 0, 0.016),
-  -0.5px 0px 38.1px rgba(0, 0, 0, 0.021),
-  3px 0px 41.9px rgba(0, 0, 0, 0.028),
-  7.9px 0px 47.2px rgba(0, 0, 0, 0.035),
-  14.9px 0px 56.2px rgba(0, 0, 0, 0.042),
-  26px 0px 80px rgba(0, 0, 0, 0.05)
-;
+  box-shadow: -3.9px 0px 12.2px rgba(0, 0, 0, 0.002), -5.1px 0px 20.5px rgba(0, 0, 0, 0.004),
+    -5.2px 0px 26.5px rgba(0, 0, 0, 0.007), -4.5px 0px 31px rgba(0, 0, 0, 0.011),
+    -2.9px 0px 34.7px rgba(0, 0, 0, 0.016), -0.5px 0px 38.1px rgba(0, 0, 0, 0.021),
+    3px 0px 41.9px rgba(0, 0, 0, 0.028), 7.9px 0px 47.2px rgba(0, 0, 0, 0.035),
+    14.9px 0px 56.2px rgba(0, 0, 0, 0.042), 26px 0px 80px rgba(0, 0, 0, 0.05);
+}
+.message {
+  background: rgb(135, 135, 135);
+  background: linear-gradient(
+    180deg,
+    rgba(194, 194, 194, 0.2) 3%,
+    rgba(187, 187, 187, 0.1) 47%,
+    rgba(243, 243, 243, 0.1) 96%
+  );
 }

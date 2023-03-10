@@ -1,4 +1,4 @@
-import { MESSAGE_SEND } from '../actions/chatAction';
+import { ADD_MESSAGE } from '../actions/chatAction';
 
 const initialState = {
   messages: [],
@@ -8,10 +8,10 @@ const initialState = {
 function chatReducer(state = initialState, action = {}) {
   const { messages } = state;
   switch (action.type) {
-    case MESSAGE_SEND:
+    case ADD_MESSAGE:
       return {
         ...state,
-        messages: [...messages, action.payload],
+        messages: [...messages, action.payload.message],
       };
     default:
       return state;

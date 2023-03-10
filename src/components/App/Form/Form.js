@@ -3,11 +3,9 @@
 /* eslint-disable no-unused-vars */
 import './form.scss';
 import { useEffect, useRef, useState } from 'react';
-import { Box, FormControl, TextField } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNewId } from '../../../utils/function';
 import { newHistoryChat } from '../../../actions/chatAction';
-import { newChatOnChange } from '../../../actions/formAction';
 import ToolsBar from '../../mui/ToolsBar';
 import { getAllMessages, getLogin, getUser } from '../../../selectors/functions';
 import AlertDialogSlide from '../../mui/Modal';
@@ -23,7 +21,7 @@ function Form() {
   const fontStyle = formats.map((format) => ` "${format}"`);
   const fontStyleString = fontStyle.toString();
   const login = useSelector(getLogin);
-  console.log(fontStyleString);
+
   useEffect(() => {
     inputEl.current.focus();
   }, []);
@@ -33,7 +31,6 @@ function Form() {
     if (user !== '') {
       dispatch(
         newHistoryChat({
-          id: getNewId(messages),
           content: inputChat,
           user: user,
         }),

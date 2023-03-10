@@ -12,16 +12,6 @@ const initialState = {
 function formReducer(state = initialState, action = {}) {
   const { payload } = action;
   switch (action.type) {
-    case ON_CHANGE:
-      return {
-        ...state,
-        inputChat: action.inputChat,
-      };
-    case ON_SUBMIT:
-      return {
-        ...state,
-        inputChat: '',
-      };
     case CONNEXION:
       return {
         ...state,
@@ -40,6 +30,7 @@ function formReducer(state = initialState, action = {}) {
         ...state,
         loading: payload.loading,
       };
+
     default:
       return state;
   }

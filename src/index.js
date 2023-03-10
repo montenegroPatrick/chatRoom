@@ -1,12 +1,12 @@
 // == Import : npm
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import store from './store/store';
 
 // == Import : local
 // Composants
 import App from 'src/components/App/App';
 import { StrictMode } from 'react';
+import store from './store/store';
 import { connectWebsocket } from './actions/chatAction';
 
 store.dispatch(connectWebsocket());

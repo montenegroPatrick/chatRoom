@@ -1,17 +1,17 @@
 import axios from 'axios';
-import { catchError, changeLoading, newConnexion } from '../actions/formAction';
+import { AUTHENTIFICATION, catchError, changeLoading, newConnexion } from '../actions/formAction';
 
 const auth = (store) => (next) => (action) => {
   const { payload } = action;
   switch (action.type) {
-    case 'AUTHENTIFICATION':
+    case AUTHENTIFICATION:
       /*
             Quand l'action est capturée, je fais mon traitement
             (appel API par exemple)
           */
       store.dispatch(changeLoading({ loading: true }));
       axios
-        .post('http://localhost:3001/login', { ...payload })
+        .post('http://localhost:3001/login', payload)
         .then((res) => {
           const { pseudo } = res.data;
           store.dispatch(
