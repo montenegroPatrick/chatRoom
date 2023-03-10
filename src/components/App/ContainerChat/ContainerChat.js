@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import BubbleChat from './BubbleChat';
 import { useEffect, useRef } from 'react';
 import { getAllMessages, getUser } from '../../../selectors/functions';
-import useSound from '../../../utils/sound';
 import playSound from '../../../utils/sound';
 
 function ContainerChat() {

@@ -29,10 +29,10 @@ import playSound from '../../../utils/sound';
 function SettingsMenu() {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
   const [userConnexion, setUserConnexion] = useState('');
   const [emailValidator, setEmailValidator] = useState('');
   const [password, setPassword] = useState('');
-  const open = Boolean(anchorEl);
   const [errorList, setErrorList] = useState([]);
   const [glitch, setGlitch] = useState(false);
   const initialMount = useRef(true);
@@ -44,6 +44,7 @@ function SettingsMenu() {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+
     playSound('woosh');
   };
   const handleClose = () => {

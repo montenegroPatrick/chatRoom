@@ -9,6 +9,9 @@ import { newHistoryChat } from '../../../actions/chatAction';
 import ToolsBar from '../../mui/ToolsBar';
 import { getAllMessages, getLogin, getUser } from '../../../selectors/functions';
 import AlertDialogSlide from '../../mui/Modal';
+import EmojiPicker, { Emoji } from 'emoji-picker-react';
+import { Avatar, Box, IconButton, Tooltip } from '@mui/material';
+import StandaloneToggleButton from '../../mui/ToolTip';
 
 function Form() {
   const inputEl = useRef(null);
@@ -38,6 +41,9 @@ function Form() {
     }
     setInputChat('');
   };
+  const onEmojiClick = (emojiData) => {
+    setInputChat(`${inputChat}${emojiData.emoji}`);
+  };
 
   return (
     <form className="form" action="" onSubmit={handleSubmit}>
@@ -49,13 +55,18 @@ function Form() {
           title="vous êtes déconnecté"
         />
       )}
-      <ToolsBar
-        sx={{ margin: '1rem' }}
-        alignment={alignment}
-        formats={formats}
-        setFormats={setFormats}
-        setAlignment={setAlignment}
-      />
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <ToolsBar
+          sx={{ margin: '1rem' }}
+          alignment={alignment}
+          formats={formats}
+          setFormats={setFormats}
+          setAlignment={setAlignment}
+        />
+        <StandaloneToggleButton>
+          <EmojiPicker onEmojiClick={onEmojiClick} />
+        </StandaloneToggleButton>
+      </Box>
       <input
         style={{ textAlignLast: `${alignment}`, fontStyle: `${fontStyleString}` }}
         ref={inputEl}
