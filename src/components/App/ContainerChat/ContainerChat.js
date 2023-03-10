@@ -4,15 +4,20 @@ import './chat.scss';
 import { useSelector } from 'react-redux';
 import BubbleChat from './BubbleChat';
 import { useEffect, useRef } from 'react';
-import { getAllMessages } from '../../../selectors/functions';
+import { getAllMessages, getUser } from '../../../selectors/functions';
+import useSound from '../../../utils/sound';
+import playSound from '../../../utils/sound';
 
 function ContainerChat() {
   const messages = useSelector(getAllMessages);
   const messagesEndRef = useRef(null);
   const inputContent = messages.map((input) => input.content);
-
+  const currentUser = useSelector(getUser);
   useEffect(() => {
     messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (messages.find((message) => message.author !== currentUser)) {
+      playSound('xylo');
+    }
   }, [inputContent]);
 
   return (

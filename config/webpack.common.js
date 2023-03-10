@@ -49,7 +49,8 @@ module.exports = {
   module: {
     rules: [
       //JS
-      {
+      { 
+      
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
@@ -59,7 +60,9 @@ module.exports = {
               cacheDirectory: true,
             },
           },
+      
         ],
+      
       },
       // Images
       {
