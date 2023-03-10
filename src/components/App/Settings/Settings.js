@@ -24,6 +24,7 @@ import { checkEmail, checkPassword } from '../../../utils/function.js';
 import { getErrors, getLoading, getLogin, getUser } from '../../../selectors/functions';
 import Logout from '../../Logout/Logout';
 import Spinner from '../../mui/Spinner';
+import useSound from '../../../Hooks/sound';
 
 function SettingsMenu() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function SettingsMenu() {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    useSound('woosh');
   };
   const handleClose = () => {
     setAnchorEl(null);
