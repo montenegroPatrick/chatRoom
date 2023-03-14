@@ -96,7 +96,10 @@ function SettingsMenu() {
       {login ? (
         <Logout handleLogout={handleLogout} user={user} />
       ) : (
-        <div style={{ display: 'flex', justifyContent: 'right', marginRight: '2rem' }}>
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: 'flex', justifyContent: 'right', marginRight: '2rem' }}
+        >
           <Box
             sx={{
               display: 'flex',
@@ -210,6 +213,7 @@ function SettingsMenu() {
 
                 <MenuItem>
                   <TextField
+                    autoComplete="on"
                     name="email"
                     id="outlined-textarea"
                     label="email"
@@ -222,10 +226,10 @@ function SettingsMenu() {
                 </MenuItem>
                 <MenuItem>
                   <TextField
+                    autoComplete="on"
                     name="password"
                     ref={passwordField}
                     id="outlined-password-input"
-                    autoComplete=""
                     type="password"
                     label="Password"
                     placeholder="Placeholder"
@@ -235,7 +239,7 @@ function SettingsMenu() {
                   />
                 </MenuItem>
                 <MenuItem>
-                  <Button variant="contained" disableElevation onClick={handleSubmit}>
+                  <Button type="submit" variant="contained" disableElevation onClick={handleSubmit}>
                     Envoyer
                   </Button>
                 </MenuItem>
@@ -243,7 +247,7 @@ function SettingsMenu() {
               </Box>
             </Menu>
           )}
-        </div>
+        </form>
       )}
     </>
   );

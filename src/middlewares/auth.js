@@ -13,10 +13,13 @@ const auth = (store) => (next) => (action) => {
       axios
         .post('http://localhost:3001/login', payload)
         .then((res) => {
-          const { pseudo } = res.data;
+          console.log(res.data);
+          const { pseudo, avatar, color } = res.data;
           store.dispatch(
             newConnexion({
               pseudo,
+              avatar,
+              color,
               login: true,
             }),
           );

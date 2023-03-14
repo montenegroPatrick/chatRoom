@@ -12,6 +12,7 @@ import AlertDialogSlide from '../../mui/Modal';
 import EmojiPicker, { Emoji } from 'emoji-picker-react';
 import { Avatar, Box, IconButton, Tooltip } from '@mui/material';
 import StandaloneToggleButton from '../../mui/ToolTip';
+import { typography } from '@mui/system';
 
 function Form() {
   const inputEl = useRef(null);
@@ -29,7 +30,7 @@ function Form() {
   useEffect(() => {
     inputEl.current.focus();
   }, []);
-
+  const date = new Date();
   const handleSubmit = (event) => {
     event.preventDefault();
     if (user !== '') {
@@ -37,6 +38,11 @@ function Form() {
         newHistoryChat({
           content: inputChat,
           user: user,
+          styleFormat,
+          alignment,
+          date: `${date.getHours()}h:${
+            date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
+          }, ${date.toDateString()}`,
         }),
       );
     }
@@ -69,9 +75,11 @@ function Form() {
         </StandaloneToggleButton>
       </Box>
       <input
+        autoComplete="off"
         style={{
           textAlignLast: `${alignment}`,
           font: `${styleFormat} 16px/2 sans-serif`,
+          letterSpacing: 2,
         }}
         ref={inputEl}
         id="standard-basic"

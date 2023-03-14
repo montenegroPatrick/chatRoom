@@ -19,13 +19,18 @@ const websocket = (store) => (next) => (action) => {
       break;
     }
 
-    case MESSAGE_SEND:
+    case MESSAGE_SEND: {
+      const { payload } = action;
       socket.emit('client_send_message', {
-        author: action.payload.user,
-        content: action.payload.content,
+        author: payload.user,
+        content: payload.content,
+        date: payload.date,
+        styleFormat: payload.styleFormat,
+        alignment: payload.alignment,
       });
       next(action);
       break;
+    }
     default:
       next(action);
   }

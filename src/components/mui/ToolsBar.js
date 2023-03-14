@@ -83,13 +83,6 @@ export default function ToolsBar({ alignment, formats, setAlignment, setFormats 
           <ToggleButton value="italic" aria-label="italic">
             <FormatItalicIcon />
           </ToggleButton>
-          <ToggleButton value="underlined" aria-label="underlined">
-            <FormatUnderlinedIcon />
-          </ToggleButton>
-          <ToggleButton value="color" aria-label="color">
-            <FormatColorFillIcon />
-            <ArrowDropDownIcon />
-          </ToggleButton>
         </StyledToggleButtonGroup>
       </Paper>
     </div>

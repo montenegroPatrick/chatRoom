@@ -21,9 +21,7 @@ function ContainerChat() {
 
   return (
     <div className="container box-shadow">
-      {messages.map(
-        (chat) => chat && <BubbleChat key={chat.id} content={chat.content} author={chat.author} />,
-      )}
+      {messages.map((chat) => chat && <BubbleChat key={chat.id} {...chat} />)}
       <div ref={messagesEndRef} />
     </div>
   );

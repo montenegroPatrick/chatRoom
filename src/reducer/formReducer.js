@@ -12,13 +12,17 @@ const initialState = {
 function formReducer(state = initialState, action = {}) {
   const { payload } = action;
   switch (action.type) {
-    case CONNEXION:
+    case CONNEXION: {
+      const { pseudo, login, avatar, color } = payload;
       return {
         ...state,
-        user: payload.pseudo,
-        login: payload.login,
+        user: pseudo,
+        login,
+        avatar,
+        color,
         loading: false,
       };
+    }
     case CATCH_401:
       return {
         ...state,

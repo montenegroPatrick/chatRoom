@@ -9,10 +9,12 @@ import { Avatar, Box, Divider } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { getUser } from '../../../selectors/functions';
 
-function BubbleChat({ author, content }) {
+function BubbleChat({ author, content, date, alignment, styleFormat }) {
   // console.log(content);
   const user = useSelector(getUser);
-  const date = new Date();
+  const formState = useSelector(({ form }) => form);
+
+  console.log(date);
   return (
     <Box
       className="message"
@@ -25,21 +27,40 @@ function BubbleChat({ author, content }) {
       }}
     >
       <Box>
-        <Avatar sx={{ marginRight: '0.3rem' }} variant="rounded">
-          {author.charAt[0]}
-        </Avatar>
+        <Avatar
+          sx={{ marginRight: '0.5rem', width: 56, height: 56 }}
+          variant="rounded"
+          src={formState.avatar}
+        />
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <section style={{ display: 'flex', flexDirection: 'row' }}>
+        <section
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            borderRadius: '0.5rem',
+            padding: '0.1rem',
+            border: `1px solid ${formState.color}`,
+          }}
+        >
           <Divider sx={{ marginRight: '0.3rem' }} orientation="vertical" flexItem />
           <p className={user === author ? 'container-user--me' : 'container-user--other'}>
             {' '}
             {author ? author : 'Anne Onyme'}{' '}
           </p>
-          <p className="date">{`${date.getHours()}: ${date.getMinutes()}: ${date.getSeconds()}`}</p>
+          <p className="date">{date}</p>
         </section>
         <section className="content">
-          <p> {content} </p>
+          <p
+            style={{
+              textAlignLast: `${alignment}`,
+              font: `${styleFormat} 16px/2 sans-serif`,
+              letterSpacing: 2,
+            }}
+          >
+            {' '}
+            {content}{' '}
+          </p>
         </section>
       </Box>
     </Box>
@@ -49,6 +70,8 @@ function BubbleChat({ author, content }) {
 BubbleChat.propTypes = {
   author: PropTypes.node.isRequired,
   content: PropTypes.node.isRequired,
+  date: PropTypes.node.isRequired,
+  avatar: PropTypes.string.isRequired,
 };
 
 export default BubbleChat;
