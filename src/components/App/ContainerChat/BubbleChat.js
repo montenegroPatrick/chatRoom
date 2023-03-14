@@ -40,7 +40,6 @@ function BubbleChat({ author, content, date, alignment, styleFormat }) {
             flexDirection: 'row',
             borderRadius: '0.5rem',
             padding: '0.1rem',
-            border: `1px solid ${formState.color}`,
           }}
         >
           <Divider sx={{ marginRight: '0.3rem' }} orientation="vertical" flexItem />
@@ -49,6 +48,24 @@ function BubbleChat({ author, content, date, alignment, styleFormat }) {
             {author ? author : 'Anne Onyme'}{' '}
           </p>
           <p className="date">{date}</p>
+          <div
+            style={{
+              borderRadius: '0.5rem',
+              display: 'flex',
+            }}
+          >
+            <p className="tags">#tagColor</p>
+            <span
+              style={{
+                backgroundColor: formState.color,
+                width: 'max-content',
+                height: '10px',
+                color: formState.color,
+              }}
+            >
+              ^
+            </span>
+          </div>
         </section>
         <section className="content">
           <p
