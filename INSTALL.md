@@ -14,10 +14,7 @@ Bienvenue dans ce modèle/template de projet React !
 
 Récupérez une copie du modèle :
 
-```sh
-git clone git@github.com:O-clock-{VotrePromo}/React-Modele.git
-
-cd React-Modele
+```
 
 # installe les dépendances du projet
 yarn
